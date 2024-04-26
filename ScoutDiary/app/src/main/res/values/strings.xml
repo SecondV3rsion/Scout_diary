@@ -69,4 +69,6 @@
     <string name="preklici">Prekliči</string>
     <string name="vnesite_ime_clana">Vnesite ime člana</string>
     <string name="shrani">Shrani</string>
+    <string name="ime_voda">ime voda</string>
+    <string name="gumb_evidenca">Evidenca</string>
 </resources>
