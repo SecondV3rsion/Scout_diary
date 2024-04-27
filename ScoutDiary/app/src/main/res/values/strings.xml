@@ -71,4 +71,7 @@
     <string name="shrani">Shrani</string>
     <string name="ime_voda">ime voda</string>
     <string name="gumb_evidenca">Evidenca</string>
+    <string name="slika_voda">slika voda</string>
+    <string name="slika_sestanka">slika sestanka</string>
+    <string name="opis_sestanka">Opis sestanka</string>
 </resources>

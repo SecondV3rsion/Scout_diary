@@ -1,17 +1,25 @@
 package si.uni_lj.fe.tnuv.scoutdiary;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -24,6 +32,12 @@ public class EditVodActivity extends AppCompatActivity {
 
     // Seznam za shranjevanje imen članov
     private ArrayAdapter<String> adapter;
+    ImageView slikaVoda;
+
+    ActivityResultLauncher<Intent> resultLauncher;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +47,40 @@ public class EditVodActivity extends AppCompatActivity {
         LinearLayout membersListView = findViewById(R.id.linearLayoutMembersList);
         Button addMemberButton = findViewById(R.id.buttonAddMember);
         ImageButton selectIconButton = findViewById(R.id.imageButtonSelectIcon);
+        slikaVoda = findViewById(R.id.slika_voda);
 
         ListView listView = new ListView(this);
         listView.setAdapter(adapter);
         membersListView.addView(listView);
 
+        registerResult();
+
         addMemberButton.setOnClickListener(v -> addMember());
         selectIconButton.setOnClickListener(v -> selectIcon());
+    }
+
+    private void selectIcon(){
+        Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+        resultLauncher.launch(intent);
+    }
+
+    private void registerResult(){
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        try {
+                            Uri imageUri = result.getData().getData();
+                            slikaVoda.setImageURI(imageUri);
+
+                        }catch(Exception e){
+                            Toast.makeText(EditVodActivity.this, "No image selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+
     }
 
     private void addMember() {
@@ -110,13 +151,5 @@ public class EditVodActivity extends AppCompatActivity {
         // Add the row to the LinearLayout
         LinearLayout membersListView = findViewById(R.id.linearLayoutMembersList);
         membersListView.addView(rowLayout);
-    }
-
-
-
-
-
-    private void selectIcon() {
-        // Dodajte logiko za odpiranje galerije in izbiro slike
     }
 }

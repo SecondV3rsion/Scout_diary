@@ -25,7 +25,8 @@
         app:layout_constraintStart_toStartOf="@+id/ime_voda"
         app:layout_constraintTop_toBottomOf="@+id/ime_voda"
         app:layout_constraintEnd_toEndOf="@+id/ime_voda"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/slika_voda" />
 
     <Button
         android:id="@+id/gumb_evidenca"
@@ -49,9 +50,9 @@
         app:layout_constraintEnd_toEndOf="@id/gumb_evidenca"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/gumb_evidenca"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/slika_sestanka" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,8 +61,14 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/slika_sestanka"
         app:layout_constraintTop_toTopOf="@+id/slika_sestanka"
+        android:hint="@string/opis_sestanka" />
 
-        />
+    <RatingBar
+        android:id="@+id/ocena_sestanka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/slika_sestanka"
+        app:layout_constraintTop_toBottomOf="@id/slika_sestanka"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
