@@ -74,4 +74,8 @@
     <string name="slika_voda">slika voda</string>
     <string name="slika_sestanka">slika sestanka</string>
     <string name="opis_sestanka">Opis sestanka</string>
+    <string name="saved_group_toast">Vod je uspešno shranjen</string>
+    <string name="default_group_name">Vod</string>
+    <string name="no_name_toast">Prosim napiši ime voda</string>
+    <string name="no_img_toast">Prosim izberi sliko</string>
 </resources>
