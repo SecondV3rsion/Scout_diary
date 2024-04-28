@@ -6,69 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".GroupOverviewActivity">
 
-<TextView
-    android:id="@+id/ime_voda"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/ime_voda"
-    android:textSize="24sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop = "20dp"/>
+    <TextView
+        android:id="@+id/ime_voda"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:text="@string/ime_voda"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop = "20dp"/>
 
-<ImageView
-    android:id="@+id/slika_voda"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:layout_constraintStart_toStartOf="@+id/ime_voda"
-    app:layout_constraintTop_toBottomOf="@+id/ime_voda"
-    app:layout_constraintEnd_toEndOf="@+id/ime_voda"
-    tools:srcCompat="@tools:sample/avatars"
-    android:contentDescription="@string/slika_voda" />
+    <ImageView
+        android:id="@+id/slika_voda"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/ime_voda"
+        app:layout_constraintTop_toBottomOf="@+id/ime_voda"
+        app:layout_constraintEnd_toEndOf="@+id/ime_voda"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/slika_voda" />
 
-<Button
-    android:id="@+id/gumb_evidenca"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="sans-serif-condensed-medium"
-    android:text="@string/gumb_evidenca"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="30sp"
-    app:layout_constraintTop_toBottomOf="@+id/slika_voda"
-    app:layout_constraintStart_toStartOf="@+id/slika_voda"
-    app:layout_constraintEnd_toEndOf="@+id/slika_voda"
-    android:layout_marginTop="30dp"
-    />
+    <Button
+        android:id="@+id/gumb_evidenca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/gumb_evidenca"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/slika_voda"
+        app:layout_constraintStart_toStartOf="@+id/slika_voda"
+        app:layout_constraintEnd_toEndOf="@+id/slika_voda"
+        android:layout_marginTop="30dp"
+        />
 
-<ImageView
-    android:id="@+id/slika_sestanka"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="180dp"
-    app:layout_constraintEnd_toEndOf="@id/gumb_evidenca"
-    app:layout_constraintHorizontal_bias="0.2"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/gumb_evidenca"
-    tools:srcCompat="@tools:sample/avatars"
-    android:contentDescription="@string/slika_sestanka" />
+    <ImageButton
+        android:id="@+id/btn_izberi_sliko_sestanka"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintEnd_toEndOf="@id/gumb_evidenca"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gumb_evidenca"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/slika_sestanka" />
 
-<EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.1"
-    app:layout_constraintStart_toEndOf="@+id/slika_sestanka"
-    app:layout_constraintTop_toTopOf="@+id/slika_sestanka"
-    android:hint="@string/opis_sestanka" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/btn_izberi_sliko_sestanka"
+        app:layout_constraintTop_toTopOf="@+id/btn_izberi_sliko_sestanka"
+        android:hint="@string/opis_sestanka" />
 
-<RatingBar
-    android:id="@+id/ocena_sestanka"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toEndOf="@+id/slika_sestanka"
-    app:layout_constraintTop_toBottomOf="@id/slika_sestanka"/>
+    <RatingBar
+        android:id="@+id/ocena_sestanka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/btn_izberi_sliko_sestanka"
+        app:layout_constraintTop_toBottomOf="@id/btn_izberi_sliko_sestanka"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

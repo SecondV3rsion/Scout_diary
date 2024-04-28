@@ -18,8 +18,6 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String PREF_KEY_IMAGE_URI = "imageUri";
-    private static final String PREF_KEY_GROUP_NAME = "groupName";
     ImageButton btn_slika_voda;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_slika_voda = findViewById(R.id.btn_slika_voda);
 
         btnNovVod.setOnClickListener(this);
+        btn_slika_voda.setOnClickListener(v -> goToGroupOverview());
 
     }
 
@@ -41,37 +40,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void loadGroupName() {
-        SharedPreferences sharedPref = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        String groupNameString = sharedPref.getString(PREF_KEY_GROUP_NAME, null);
+        String groupNameString = PreferencesUtil.loadGroupName(this);
 
         TextView groupName = findViewById(R.id.ime_voda);
         if (groupNameString != null) {
             groupName.setText(groupNameString);
         } else {
-            groupName.setText(R.string.default_group_name);
+            groupName.setText(R.string.default_group_name); // Make sure this string exists in your strings.xml
         }
     }
 
     private void loadGroupImage() {
-        SharedPreferences sharedPref = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        String uriString = sharedPref.getString(PREF_KEY_IMAGE_URI, null);
+        Uri imageUri = PreferencesUtil.loadImageUri(this);
 
-        if (uriString != null) {
-            Uri imageUri = Uri.parse(uriString);
-            try (InputStream stream = getContentResolver().openInputStream(imageUri)) {
-                btn_slika_voda.setImageURI(imageUri); // Set the image to an ImageView
+        if (imageUri != null) {
+            try {
+                btn_slika_voda.setImageURI(imageUri); // Assuming btn_slika_voda is your ImageView
                 Log.d("EditVodActivity", "Image set to ImageView successfully");
-            } catch (FileNotFoundException e) {
-                Log.e("EditVodActivity", "FileNotFoundException: " + e.getMessage());
-            } catch (Exception e) {
+            } catch (Exception e) { // Typically, setImageURI does not throw an exception so try-catch can be optional depending on further use
                 Log.e("EditVodActivity", "Exception in setting image URI: ", e);
             }
         } else {
             Log.d("EditVodActivity", "No URI found in SharedPreferences");
         }
-
     }
 
+
+    public void goToGroupOverview() {
+        Intent intent= new Intent(this,GroupOverviewActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onClick(View v) {
         Intent intent= new Intent(this,EditVodActivity.class);

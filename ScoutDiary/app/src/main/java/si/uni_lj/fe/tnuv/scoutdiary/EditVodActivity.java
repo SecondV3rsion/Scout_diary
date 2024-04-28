@@ -39,12 +39,11 @@ public class EditVodActivity extends AppCompatActivity {
 
     // Seznam za shranjevanje imen članov
     private ArrayAdapter<String> adapter;
-    ImageView slikaVoda;
+
     Uri imageUri = null;
     EditText ime_voda;
+    ImageButton selectIconButton;
     ActivityResultLauncher<Intent> resultLauncher;
-    private static final String PREF_KEY_IMAGE_URI = "imageUri";
-    private static final String PREF_KEY_GROUP_NAME = "groupName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +54,10 @@ public class EditVodActivity extends AppCompatActivity {
         LinearLayout membersListView = findViewById(R.id.linearLayoutMembersList);
         Button addMemberButton = findViewById(R.id.buttonAddMember);
         Button saveButton = findViewById(R.id.buttonSave);
-        ImageButton selectIconButton = findViewById(R.id.imageButtonSelectIcon);
-        slikaVoda = findViewById(R.id.slika_voda);
+        selectIconButton = findViewById(R.id.btn_izberi_sliko_voda);
+
+        // TO DO: dodaj sliko "prosim izberi sliko voda"
+        selectIconButton.setImageResource(R.drawable.ic_launcher_background);
 
         ListView listView = new ListView(this);
         listView.setAdapter(adapter);
@@ -90,11 +91,9 @@ public class EditVodActivity extends AppCompatActivity {
     }
 
     public boolean saveGroupImage() {
-        SharedPreferences sharedPref = getSharedPreferences("my_prefs", MODE_PRIVATE);
         if (imageUri != null) {
-            String uriString = imageUri.toString();
-            sharedPref.edit().putString(PREF_KEY_IMAGE_URI, uriString).apply();
-            Log.d("EditVodActivity", "Image URI saved: " + uriString);
+            PreferencesUtil.saveImageUri(this, imageUri);
+            Log.d("EditVodActivity", "Image URI saved: " + imageUri.toString());
             return true;
         } else {
             Log.d("EditVodActivity", "saveGroup: No image URI to save");
@@ -105,15 +104,13 @@ public class EditVodActivity extends AppCompatActivity {
     public boolean saveGroupName() {
         if (ime_voda != null && !ime_voda.getText().toString().trim().isEmpty()) {
             String groupNameString = ime_voda.getText().toString();
-            SharedPreferences sharedPref = getSharedPreferences("my_prefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(PREF_KEY_GROUP_NAME, groupNameString);
-            editor.apply();
+            PreferencesUtil.saveGroupName(this, groupNameString);
             return true;
         } else {
             return false;
         }
     }
+
 
     private void selectIcon(){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT); // Use ACTION_OPEN_DOCUMENT for persistent access
@@ -137,7 +134,7 @@ public class EditVodActivity extends AppCompatActivity {
                                         Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                                 );
                                 imageUri = uri; // Store the URI
-                                slikaVoda.setImageURI(imageUri); // Set the image to an ImageView
+                                selectIconButton.setImageURI(imageUri);
                             } catch (SecurityException e) {
                                 Log.e("EditVodActivity", "SecurityException: Failed to obtain persistable URI permission", e);
                             }

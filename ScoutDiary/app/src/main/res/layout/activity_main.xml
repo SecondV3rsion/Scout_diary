@@ -36,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="@id/btn_nov_vod"
         app:layout_constraintTop_toBottomOf="@+id/btn_nov_vod"
         tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/slika_voda"/>
 
     <TextView
         android:id="@+id/ime_voda"
