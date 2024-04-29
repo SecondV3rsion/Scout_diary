@@ -27,11 +27,11 @@
             android:name=".GroupOverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".EditVodActivity"
+            android:name=".EditGroupActivity"
             android:banner="@drawable/app_icon_your_company"
             android:exported="false"
             android:icon="@drawable/app_icon_your_company"
-            android:label="@string/title_activity_edit_vod"
+            android:label="@string/title_activity_edit_group"
             android:logo="@drawable/app_icon_your_company"
             android:screenOrientation="fullSensor">
             <intent-filter>

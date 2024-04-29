@@ -2,7 +2,7 @@
     <string name="app_name">ScoutDiary</string>
     <string name="str_vodov_dnevnik">Vodov dnevnik</string>
     <string name="btn_dodaj_vod">Dodaj vod</string>
-    <string name="title_activity_edit_vod">Leanback EditVodActivity</string>
+    <string name="title_activity_edit_group">Leanback EditGroupActivity</string>
     <string name="browse_title">Videos by Your Company</string>
     <string name="related_movies">Related Videos</string>
     <string name="grid_view">Grid View</string>
@@ -78,4 +78,11 @@
     <string name="default_group_name">Vod</string>
     <string name="no_name_toast">Prosim napiši ime voda</string>
     <string name="no_img_toast">Prosim izberi sliko</string>
+    <string name="vpisi_ime_člana">Vpiši ime člana</string>
+    <string name="add_text">Dodaj</string>
+    <string name="cancel_text">Prekliči</string>
+    <string name="prosim_vpisi_ime_clana">Prosim vpiši ime člana</string>
+    <string name="error_saving_group">Couldn\'t save the group</string>
+    <string name="prisotnost_shranjena">Prisotnost shranjena!</string>
+    <string name="save_attendance">Shrani prisotne</string>
 </resources>
