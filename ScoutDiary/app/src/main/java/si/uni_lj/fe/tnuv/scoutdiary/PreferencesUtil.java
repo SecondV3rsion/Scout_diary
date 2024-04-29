@@ -3,35 +3,50 @@ package si.uni_lj.fe.tnuv.scoutdiary;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 public class PreferencesUtil {
 
-    private static final String PREFS_NAME = "my_prefs";
-    private static final String PREF_KEY_IMAGE_URI = "image_uri";
-    private static final String PREF_KEY_GROUP_NAME = "group_name";
+    private static final String PREFS_NAME = "scout_diary_prefs";
+    private SharedPreferences prefs;
+    private Gson gson;
 
-    public static void saveGroupName(Context context, String groupName) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(PREF_KEY_GROUP_NAME, groupName);
-        editor.apply();
+    public PreferencesUtil(Context context) {
+        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        gson = new Gson();
     }
 
-    public static String loadGroupName(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return sharedPref.getString(PREF_KEY_GROUP_NAME, null);  // Return null or default value if not found
+    public void saveImageUri(String key, Uri imageUri) {
+        prefs.edit().putString(key, imageUri.toString()).apply();
     }
 
-    public static void saveImageUri(Context context, Uri imageUri) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(PREF_KEY_IMAGE_URI, imageUri.toString());
-        editor.apply();
-    }
-
-    public static Uri loadImageUri(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        String uriString = sharedPref.getString(PREF_KEY_IMAGE_URI, null);
+    public Uri loadImageUri(String key) {
+        String uriString = prefs.getString(key, null);
         return uriString != null ? Uri.parse(uriString) : null;
     }
 
+    public void saveGroupName(String groupName) {
+        prefs.edit().putString("group_name", groupName).apply();
+    }
+
+    public String loadGroupName() {
+        return prefs.getString("group_name", null);
+    }
+
+    public void saveGroupMembers(List<String> members) {
+        String json = gson.toJson(members);
+        prefs.edit().putString("group_members", json).apply();
+    }
+
+    public List<String> loadGroupMembers() {
+        String json = prefs.getString("group_members", null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        return json != null ? gson.fromJson(json, type) : new ArrayList<>();
+    }
 }
