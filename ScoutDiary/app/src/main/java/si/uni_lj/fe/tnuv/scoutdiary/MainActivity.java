@@ -16,20 +16,30 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    ImageButton btn_slika_voda;
+    private ImageButton btn_slika_voda;
+    private TextView groupName;
+    private PreferencesUtil preferencesUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
+        setupListeners();
+        preferencesUtil = new PreferencesUtil(this);
+    }
 
+    private void initViews() {
         Button btnNovVod = findViewById(R.id.btn_nov_vod);
         btn_slika_voda = findViewById(R.id.btn_slika_voda);
+        groupName = findViewById(R.id.ime_voda); // Cache the TextView
+    }
 
-        btnNovVod.setOnClickListener(this);
-        btn_slika_voda.setOnClickListener(v -> goToGroupOverview());
-
+    private void setupListeners() {
+        findViewById(R.id.btn_nov_vod).setOnClickListener(view -> goToEditGroupActivity());
+        btn_slika_voda.setOnClickListener(view -> goToGroupOverview());
     }
 
     @Override
@@ -40,39 +50,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void loadGroupName() {
-        String groupNameString = PreferencesUtil.loadGroupName(this);
-
-        TextView groupName = findViewById(R.id.ime_voda);
+        String groupNameString = preferencesUtil.loadGroupName();
         if (groupNameString != null) {
             groupName.setText(groupNameString);
+            groupName.setVisibility(View.VISIBLE);
         } else {
-            groupName.setText(R.string.default_group_name); // Make sure this string exists in your strings.xml
+            groupName.setVisibility(View.GONE);
         }
     }
 
     private void loadGroupImage() {
-        Uri imageUri = PreferencesUtil.loadImageUri(this);
-
+        Uri imageUri = preferencesUtil.loadImageUri("group_img");
         if (imageUri != null) {
-            try {
-                btn_slika_voda.setImageURI(imageUri); // Assuming btn_slika_voda is your ImageView
-                Log.d("EditVodActivity", "Image set to ImageView successfully");
-            } catch (Exception e) { // Typically, setImageURI does not throw an exception so try-catch can be optional depending on further use
-                Log.e("EditVodActivity", "Exception in setting image URI: ", e);
-            }
+            btn_slika_voda.setImageURI(imageUri);
+            btn_slika_voda.setVisibility(View.VISIBLE);
         } else {
-            Log.d("EditVodActivity", "No URI found in SharedPreferences");
+            btn_slika_voda.setVisibility(View.GONE);
         }
     }
 
 
-    public void goToGroupOverview() {
-        Intent intent= new Intent(this,GroupOverviewActivity.class);
-        startActivity(intent);
+    private void goToGroupOverview() {
+        startActivity(new Intent(this, GroupOverviewActivity.class));
     }
-    @Override
-    public void onClick(View v) {
-        Intent intent= new Intent(this,EditVodActivity.class);
-        startActivity(intent);
+
+    private void goToEditGroupActivity() {
+        startActivity(new Intent(this, EditGroupActivity.class));
     }
 }
