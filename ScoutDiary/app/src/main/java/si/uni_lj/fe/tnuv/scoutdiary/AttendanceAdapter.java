@@ -39,6 +39,11 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         return members.size();
     }
 
+    // Method to get the list of attendance data
+    public List<Boolean> getAttendanceList() {
+        return attendance;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView memberName;
         CheckBox attendance;
@@ -50,4 +55,3 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         }
     }
 }
-

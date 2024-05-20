@@ -85,4 +85,7 @@
     <string name="error_saving_group">Couldn\'t save the group</string>
     <string name="prisotnost_shranjena">Prisotnost shranjena!</string>
     <string name="save_attendance">Shrani prisotne</string>
+    <string name="btn_arhiv">Arhiv</string>
+    <string name="ime_sestanka">Ime sestanka</string>
+    <string name="example_date">Četrtek, 2. 5. 24</string>
 </resources>

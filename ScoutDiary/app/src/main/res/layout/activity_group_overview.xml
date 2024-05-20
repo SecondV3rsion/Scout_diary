@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".GroupOverviewActivity">
 
+    <!-- Group name -->
     <TextView
         android:id="@+id/ime_voda"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/ime_voda"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop = "20dp"/>
 
+    <!-- Group image -->
     <ImageView
         android:id="@+id/slika_voda"
         android:layout_width="120dp"
@@ -28,6 +30,7 @@
         tools:srcCompat="@tools:sample/avatars"
         android:contentDescription="@string/slika_voda" />
 
+    <!-- Button evidenca -->
     <Button
         android:id="@+id/btn_evidenca"
         android:layout_width="wrap_content"
@@ -42,34 +45,114 @@
         android:layout_marginTop="30dp"
         />
 
-    <ImageButton
-        android:id="@+id/btn_izberi_sliko_sestanka"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="130dp"
-        app:layout_constraintEnd_toEndOf="@id/btn_evidenca"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
+    <!-- Arhiv Button -->
+    <Button
+        android:id="@+id/btn_arhiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/btn_arhiv"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/btn_evidenca"
-        tools:srcCompat="@mipmap/ic_launcher"
-        android:contentDescription="@string/slika_sestanka" />
+        app:layout_constraintStart_toStartOf="@+id/btn_evidenca"
+        app:layout_constraintEnd_toEndOf="@+id/btn_evidenca"
+        android:layout_marginTop="0dp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+    <!-- CardView for meeting details -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_meeting_details"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/btn_izberi_sliko_sestanka"
-        app:layout_constraintTop_toTopOf="@+id/btn_izberi_sliko_sestanka"
-        android:hint="@string/opis_sestanka" />
+        app:layout_constraintTop_toBottomOf="@id/btn_arhiv"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
-    <RatingBar
-        android:id="@+id/ocena_sestanka"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/btn_izberi_sliko_sestanka"
-        app:layout_constraintTop_toBottomOf="@id/btn_izberi_sliko_sestanka"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- Date Navigation -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
 
+                <ImageButton
+                    android:id="@+id/btn_previous_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_media_previous"
+                    android:background="?attr/selectableItemBackgroundBorderless" />
+
+                <TextView
+                    android:id="@+id/current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/example_date"
+                    android:textSize="18sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center" />
+
+                <ImageButton
+                    android:id="@+id/btn_next_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_media_next"
+                    android:background="?attr/selectableItemBackgroundBorderless" />
+            </LinearLayout>
+
+            <!-- Meeting name EditText -->
+            <EditText
+                android:id="@+id/et_meeting_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ime_sestanka"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Meeting Image and Description -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <!-- Meeting Image -->
+                <ImageButton
+                    android:id="@+id/btn_izberi_sliko_sestanka"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/slika_sestanka"
+                    tools:srcCompat="@mipmap/ic_launcher" />
+
+                <!-- Meeting description EditText -->
+                <EditText
+                    android:id="@+id/et_meeting_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/opis_sestanka"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- Meeting rating bar -->
+            <RatingBar
+                android:id="@+id/ocena_sestanka"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

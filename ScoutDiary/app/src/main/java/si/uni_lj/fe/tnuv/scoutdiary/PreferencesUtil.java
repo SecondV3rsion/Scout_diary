@@ -49,4 +49,43 @@ public class PreferencesUtil {
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
         return json != null ? gson.fromJson(json, type) : new ArrayList<>();
     }
+
+    public void saveAttendance(String date, List<Boolean> attendance) {
+        String json = gson.toJson(attendance);
+        prefs.edit().putString(date + "_attendance", json).apply();
+    }
+
+    public List<Boolean> loadAttendance(String date) {
+        String json = prefs.getString(date + "_attendance", null);
+        Type type = new TypeToken<ArrayList<Boolean>>() {}.getType();
+        return json != null ? gson.fromJson(json, type) : new ArrayList<>();
+    }
+
+    public void saveMeetingDetails(String date, String name, String description, Uri imageUri, float rating) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(date + "_name", name);
+        editor.putString(date + "_description", description);
+        if (imageUri != null) {
+            editor.putString(date + "_imageUri", imageUri.toString());
+        }
+        editor.putFloat(date + "_rating", rating);
+        editor.apply();
+    }
+
+    public Uri loadMeetingImageUri(String date) {
+        String uriString = prefs.getString(date + "_imageUri", null);
+        return uriString != null ? Uri.parse(uriString) : null;
+    }
+
+    public String loadMeetingName(String date) {
+        return prefs.getString(date + "_name", "");
+    }
+
+    public String loadMeetingDescription(String date) {
+        return prefs.getString(date + "_description", "");
+    }
+
+    public float loadMeetingRating(String date) {
+        return prefs.getFloat(date + "_rating", 0f);
+    }
 }
