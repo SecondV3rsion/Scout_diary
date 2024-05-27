@@ -27,19 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        setupListeners();
         preferencesUtil = new PreferencesUtil(this);
     }
 
     private void initViews() {
-        Button btnNovVod = findViewById(R.id.btn_nov_vod);
         btn_slika_voda = findViewById(R.id.btn_slika_voda);
         groupName = findViewById(R.id.ime_voda); // Cache the TextView
-    }
-
-    private void setupListeners() {
-        findViewById(R.id.btn_nov_vod).setOnClickListener(view -> goToEditGroupActivity());
-        btn_slika_voda.setOnClickListener(view -> goToGroupOverview());
     }
 
     @Override
@@ -63,12 +56,20 @@ public class MainActivity extends AppCompatActivity {
         Uri imageUri = preferencesUtil.loadImageUri("group_img");
         if (imageUri != null) {
             btn_slika_voda.setImageURI(imageUri);
-            btn_slika_voda.setVisibility(View.VISIBLE);
+            setupListeners(true); // Image is present
         } else {
-            btn_slika_voda.setVisibility(View.GONE);
+            btn_slika_voda.setImageResource(R.drawable.add_btn_logo);
+            setupListeners(false); // Image is not present, show default image
         }
     }
 
+    private void setupListeners(boolean isImagePresent) {
+        if (isImagePresent) {
+            btn_slika_voda.setOnClickListener(view -> goToGroupOverview());
+        } else {
+            btn_slika_voda.setOnClickListener(view -> goToEditGroupActivity());
+        }
+    }
 
     private void goToGroupOverview() {
         startActivity(new Intent(this, GroupOverviewActivity.class));
