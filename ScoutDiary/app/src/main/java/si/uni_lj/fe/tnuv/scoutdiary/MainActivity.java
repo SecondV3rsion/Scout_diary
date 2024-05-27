@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Uri imageUri = preferencesUtil.loadImageUri("group_img");
         if (imageUri != null) {
             btn_slika_voda.setImageURI(imageUri);
+            btn_slika_voda.setScaleType(ImageView.ScaleType.FIT_CENTER);
             setupListeners(true); // Image is present
         } else {
             btn_slika_voda.setImageResource(R.drawable.add_btn_logo);

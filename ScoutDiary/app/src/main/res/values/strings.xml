@@ -90,4 +90,6 @@
     <string name="example_date">Četrtek, 2. 5. 24</string>
     <string name="ime_aplikacije">Ime aplikacije</string>
     <string name="moji_vodi">Moji vodi:</string>
+    <string name="vod">Vod:</string>
+    <string name="clani_voda">Člani voda</string>
 </resources>

@@ -42,7 +42,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="70dp"
         android:src="@drawable/add_btn_logo"
-        android:contentDescription="@string/slika_voda"/>
+        android:contentDescription="@string/slika_voda"
+        />
 
     <TextView
         android:id="@+id/ime_voda"

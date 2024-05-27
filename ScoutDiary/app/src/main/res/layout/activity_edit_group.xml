@@ -6,62 +6,117 @@
     android:layout_height="match_parent"
     tools:context=".EditGroupActivity">
 
+
+    <!-- App Name -->
+    <ImageView
+        android:id="@+id/main_screen"
+        android:layout_width="809dp"
+        android:layout_height="355dp"
+        android:layout_marginTop="-70dp"
+        android:contentDescription="@string/ime_aplikacije"
+        android:src="@drawable/main_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_izberi_sliko_voda"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_screen"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_photo"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+    <TextView
+        android:id="@+id/napis_vod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vod"
+        app:layout_constraintTop_toTopOf="@id/btn_izberi_sliko_voda"
+        app:layout_constraintBottom_toBottomOf="@id/btn_izberi_sliko_voda"
+        app:layout_constraintStart_toEndOf="@id/btn_izberi_sliko_voda"
+        android:layout_marginStart="5dp"
+        android:textSize="30sp"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        />
+
     <EditText
         android:id="@+id/editTextImeVoda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/vpisi_ime_voda"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/napis_vod"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintTop_toTopOf="@id/napis_vod"
+        app:layout_constraintBottom_toBottomOf="@id/napis_vod"
+        app:layout_constraintTop_toBottomOf="@id/main_screen"
+        android:layout_marginStart="5dp"
+        />
 
-    <ImageButton
-        android:id="@+id/btn_izberi_sliko_voda"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextImeVoda"
-        tools:srcCompat="@mipmap/ic_launcher" />
-
-    <Button
-        android:id="@+id/buttonAddMember"
+    <TextView
+        android:id="@+id/text_clani_voda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dodaj_clana"
+        android:text="@string/clani_voda"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintTop_toBottomOf="@id/btn_izberi_sliko_voda"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_izberi_sliko_voda"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp" />
 
+    <ImageView
+        android:id="@+id/icon_clani_voda"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_member"
+        android:contentDescription="@string/clani_voda"
+        app:layout_constraintTop_toTopOf="@id/text_clani_voda"
+        app:layout_constraintBottom_toBottomOf="@id/text_clani_voda"
+        app:layout_constraintEnd_toStartOf="@id/text_clani_voda"
+        android:layout_marginEnd="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMembers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddMember"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_clani_voda"
         app:layout_constraintBottom_toTopOf="@id/buttonSave"
-        android:padding="16dp" />
+        />
 
+    <!-- Button to Add New Member -->
+    <Button
+        android:id="@+id/buttonAddMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dodaj_clana"
+        app:layout_constraintTop_toTopOf="@id/text_clani_voda"
+        app:layout_constraintBottom_toBottomOf="@id/text_clani_voda"
+        app:layout_constraintStart_toEndOf="@+id/text_clani_voda"
+        android:layout_marginStart="8dp"
+        />
 
-
-    <!-- Gumb "Shrani" -->
+    <!-- Save Button -->
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/shrani"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:text="@string/shrani"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
