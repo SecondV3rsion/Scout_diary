@@ -91,5 +91,7 @@
     <string name="ime_aplikacije">Ime aplikacije</string>
     <string name="moji_vodi">Moji vodi:</string>
     <string name="vod">Vod:</string>
-    <string name="clani_voda">Člani voda</string>
+    <string name="clani_voda">Člani voda:</string>
+    <string name="dodaj_vod">Dodaj vod</string>
+    <string name="izberi_sliko">Izberi sliko</string>
 </resources>

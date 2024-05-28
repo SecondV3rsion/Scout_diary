@@ -14,12 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton btn_slika_voda;
+    private ShapeableImageView btn_slika_voda;
     private TextView groupName;
     private PreferencesUtil preferencesUtil;
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         btn_slika_voda = findViewById(R.id.btn_slika_voda);
-        groupName = findViewById(R.id.ime_voda); // Cache the TextView
+        groupName = findViewById(R.id.ime_voda);
     }
 
     @Override
@@ -47,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         String groupNameString = preferencesUtil.loadGroupName();
         if (groupNameString != null) {
             groupName.setText(groupNameString);
-            groupName.setVisibility(View.VISIBLE);
-        } else {
-            groupName.setVisibility(View.GONE);
         }
     }
 
@@ -57,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         Uri imageUri = preferencesUtil.loadImageUri("group_img");
         if (imageUri != null) {
             btn_slika_voda.setImageURI(imageUri);
-            btn_slika_voda.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            btn_slika_voda.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            btn_slika_voda.setBackground(null);
+            btn_slika_voda.setStrokeWidth(30);
             setupListeners(true); // Image is present
         } else {
             btn_slika_voda.setImageResource(R.drawable.add_btn_logo);
@@ -68,8 +69,16 @@ public class MainActivity extends AppCompatActivity {
     private void setupListeners(boolean isImagePresent) {
         if (isImagePresent) {
             btn_slika_voda.setOnClickListener(view -> goToGroupOverview());
+            btn_slika_voda.setOnLongClickListener(view -> {
+                goToEditGroupActivity(true);
+                return true;
+            });
         } else {
-            btn_slika_voda.setOnClickListener(view -> goToEditGroupActivity());
+            btn_slika_voda.setOnClickListener(view -> goToEditGroupActivity(false));
+            btn_slika_voda.setOnLongClickListener(view -> {
+                // Optionally you can handle long click differently when no image is present
+                return false;
+            });
         }
     }
 
@@ -77,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, GroupOverviewActivity.class));
     }
 
-    private void goToEditGroupActivity() {
-        startActivity(new Intent(this, EditGroupActivity.class));
+    private void goToEditGroupActivity(boolean isEditMode) {
+        Intent intent = new Intent(this, EditGroupActivity.class);
+        intent.putExtra("isEditMode", isEditMode);
+        startActivity(intent);
     }
 }

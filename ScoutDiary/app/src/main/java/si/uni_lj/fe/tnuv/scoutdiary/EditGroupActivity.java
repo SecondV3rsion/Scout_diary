@@ -6,15 +6,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +31,10 @@ public class EditGroupActivity extends AppCompatActivity {
     private List<String> members = new ArrayList<>();
     private PreferencesUtil preferencesUtil;
     private EditText groupNameEditText;
-    private ImageButton selectIconButton;
+    private ShapeableImageView selectIconButton;
+    private TextView selectIconText;
     private ImageSelector imageSelector;
+    private boolean isEditMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,11 @@ public class EditGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_group);
         initViews();
         setupListeners();
+
+        isEditMode = getIntent().getBooleanExtra("isEditMode", false);
+        if (isEditMode) {
+            loadGroupData();
+        }
     }
 
     private void initViews() {
@@ -42,6 +54,7 @@ public class EditGroupActivity extends AppCompatActivity {
         Button addMemberButton = findViewById(R.id.buttonAddMember);
         Button saveButton = findViewById(R.id.buttonSave);
         selectIconButton = findViewById(R.id.btn_izberi_sliko_voda);
+        selectIconText = findViewById(R.id.text_izberi_sliko_voda);
 
         recyclerView = findViewById(R.id.recyclerViewMembers);
         adapter = new MembersAdapter(this, members);
@@ -54,13 +67,15 @@ public class EditGroupActivity extends AppCompatActivity {
         imageSelector = new ImageSelector(this, new ImageSelector.ImageSelectedCallback() {
             @Override
             public void onImageSelected(Uri uri) {
+                selectIconText.setVisibility(View.INVISIBLE);
+                selectIconButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 selectIconButton.setImageURI(uri); // Update UI
-                preferencesUtil.saveImageUri("group_img",uri); // Save URI to preferences
+                preferencesUtil.saveImageUri("group_img", uri); // Save URI to preferences
             }
 
             @Override
             public void onSelectionError(String message) {
-                Toast.makeText(EditGroupActivity.this, message, LENGTH_SHORT).show();
+                Toast.makeText(EditGroupActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -69,6 +84,27 @@ public class EditGroupActivity extends AppCompatActivity {
         findViewById(R.id.buttonAddMember).setOnClickListener(v -> showAddMemberDialog());
         selectIconButton.setOnClickListener(v -> imageSelector.openGallery());
         findViewById(R.id.buttonSave).setOnClickListener(v -> saveGroup());
+    }
+
+    private void loadGroupData() {
+        String groupName = preferencesUtil.loadGroupName();
+        if (groupName != null) {
+            groupNameEditText.setText(groupName);
+        }
+
+        Uri imageUri = preferencesUtil.loadImageUri("group_img");
+        if (imageUri != null) {
+            selectIconText.setVisibility(View.INVISIBLE);
+            selectIconButton.setImageURI(imageUri);
+            selectIconButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        }
+
+        List<String> savedMembers = preferencesUtil.loadGroupMembers();
+        if (savedMembers != null) {
+            members.addAll(savedMembers);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void showAddMemberDialog() {
@@ -85,7 +121,7 @@ public class EditGroupActivity extends AppCompatActivity {
                 members.add(memberName);
                 adapter.notifyItemInserted(members.size() - 1);
             } else {
-                Toast.makeText(this, R.string.prosim_vpisi_ime_clana, LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.prosim_vpisi_ime_clana, Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton(R.string.cancel_text, (dialog, which) -> dialog.cancel());
@@ -94,9 +130,26 @@ public class EditGroupActivity extends AppCompatActivity {
 
     private void saveGroup() {
         String groupName = groupNameEditText.getText().toString().trim();
+        Uri groupImageUri = preferencesUtil.loadImageUri("group_img");
+
+        if (groupName.isEmpty()) {
+            Toast.makeText(this, "prosim vpiši ime voda", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (groupImageUri == null) {
+            Toast.makeText(this, "prosim izberi sliko", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (members.isEmpty()) {
+            Toast.makeText(this, "prosim dodaj clana", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         preferencesUtil.saveGroupName(groupName);
         preferencesUtil.saveGroupMembers(members);
-        Toast.makeText(this, R.string.saved_group_toast, LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.saved_group_toast, Toast.LENGTH_SHORT).show();
         finishAndReturnHome();
     }
 
@@ -105,3 +158,4 @@ public class EditGroupActivity extends AppCompatActivity {
         finish();
     }
 }
+
