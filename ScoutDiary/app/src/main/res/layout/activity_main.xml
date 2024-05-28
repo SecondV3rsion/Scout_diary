@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="16dp">
 
     <!-- App Name -->
     <ImageView
         android:id="@+id/main_screen"
-        android:layout_width="809dp"
-        android:layout_height="355dp"
-        android:layout_marginTop="-70dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:contentDescription="@string/ime_aplikacije"
+        android:scaleType="centerCrop"
         android:src="@drawable/main_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/moji_vodi"
+        android:textColor="@color/default_text"
         app:layout_constraintTop_toBottomOf="@id/main_screen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,18 +34,20 @@
         android:textStyle="bold"
         />
 
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_slika_voda"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/napis_moji_vodi"
-        app:layout_constraintTop_toBottomOf="@id/napis_moji_vodi"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="70dp"
-        android:src="@drawable/add_btn_logo"
         android:contentDescription="@string/slika_voda"
-        />
+        android:src="@drawable/add_btn_logo"
+        app:layout_constraintEnd_toEndOf="@id/napis_moji_vodi"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/napis_moji_vodi"
+        app:strokeColor="@color/default_button"
+        app:strokeWidth="0dp" />
 
     <TextView
         android:id="@+id/ime_voda"
@@ -51,9 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="BOBRI"
+        android:text="@string/dodaj_vod"
         android:textSize="30sp"
         android:textStyle="bold|italic"
+        android:textColor="@color/default_text"
         app:layout_constraintEnd_toEndOf="@id/btn_slika_voda"
         app:layout_constraintStart_toStartOf="@id/btn_slika_voda"
         app:layout_constraintTop_toBottomOf="@id/btn_slika_voda" />

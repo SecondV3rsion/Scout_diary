@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GroupOverviewActivity">
+    tools:context=".GroupOverviewActivity"
+    android:padding="16dp">
 
     <!-- Group name -->
     <TextView
@@ -16,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop = "20dp"/>
+        android:layout_marginTop="20dp" />
 
     <!-- Group image -->
     <ImageView
@@ -28,6 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ime_voda"
         app:layout_constraintEnd_toEndOf="@+id/ime_voda"
         tools:srcCompat="@tools:sample/avatars"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/slika_voda" />
 
     <!-- Button evidenca -->
@@ -38,12 +40,14 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/gumb_evidenca"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/slika_voda"
         app:layout_constraintStart_toStartOf="@+id/slika_voda"
         app:layout_constraintEnd_toEndOf="@+id/slika_voda"
         android:layout_marginTop="30dp"
-        />
+        android:backgroundTint="@color/default_button"
+        android:textColor="@android:color/white"
+        android:padding="10dp" />
 
     <!-- Arhiv Button -->
     <Button
@@ -53,11 +57,14 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/btn_arhiv"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/btn_evidenca"
         app:layout_constraintStart_toStartOf="@+id/btn_evidenca"
         app:layout_constraintEnd_toEndOf="@+id/btn_evidenca"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/default_button"
+        android:textColor="@android:color/white"
+        android:padding="10dp" />
 
     <!-- CardView for meeting details -->
     <androidx.cardview.widget.CardView
@@ -118,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ime_sestanka"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
 
             <!-- Meeting Image and Description -->
             <LinearLayout
@@ -142,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="@string/opis_sestanka"
-                    android:layout_marginStart="16dp"/>
+                    android:layout_marginStart="16dp" />
             </LinearLayout>
 
             <!-- Meeting rating bar -->
@@ -151,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
