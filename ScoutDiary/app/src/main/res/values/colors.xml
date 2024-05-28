@@ -7,5 +7,8 @@
     <color name="fastlane_background">#0096a6</color>
     <color name="search_opaque">#ffaa3f</color>
     <color name="selected_background">#ffaa3f</color>
-    <color name="default_background">#3d3d3d</color>
+    <color name="default_background">#817365</color>
+    <color name="default_button">#AC8B6C</color>
+    <color name="default_text">#3B1B0D</color>
+    <color name="transparent">#00000000</color>
 </resources>
