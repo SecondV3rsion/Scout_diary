@@ -1,3 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="flag_height">35dp</dimen>
+    <dimen name="flag_width">22dp</dimen>
+    <dimen name="total_flag_width">110dp</dimen>
+    <dimen name="flag_margin">2dp</dimen>
 </resources>

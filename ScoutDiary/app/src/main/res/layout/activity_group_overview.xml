@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ime_voda"
+        android:fontFamily="cursive"
         android:textSize="30sp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -140,14 +141,31 @@
                 android:padding="16dp"
                 android:background="@color/default_background2">
 
-                <!-- Meeting Image -->
-                <ImageButton
-                    android:id="@+id/btn_izberi_sliko_sestanka"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/slika_sestanka"
-                    tools:srcCompat="@mipmap/ic_launcher"
-                    android:scaleType="centerCrop" />
+                <!-- LinearLayout for Image and Button -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp">
+
+                    <!-- Meeting Image -->
+                    <ImageButton
+                        android:id="@+id/btn_izberi_sliko_sestanka"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@string/slika_sestanka"
+                        android:src="@drawable/ic_photo"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Button under the Image -->
+                    <Button
+                        android:id="@+id/btn_select_flags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tematsko_n_podro_je"
+                        android:backgroundTint="@color/default_text"
+                        />
+                </LinearLayout>
 
                 <!-- Meeting description EditText -->
                 <EditText
@@ -159,6 +177,7 @@
                     android:layout_marginStart="16dp" />
             </LinearLayout>
 
+
             <!-- Flags and Rating Bar -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,23 +185,26 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- Include flags view -->
+                <!-- Flags view -->
                 <include
                     layout="@layout/flags_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <!-- Meeting rating bar -->
                 <RatingBar
                     android:id="@+id/ocena_sestanka"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8" />
+                    android:layout_weight="1"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9" />
             </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

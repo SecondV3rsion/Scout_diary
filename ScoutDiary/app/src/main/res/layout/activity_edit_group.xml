@@ -35,7 +35,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_photo"
             app:strokeWidth="10dp"
-            app:strokeColor="@color/default_button"/>
+            app:strokeColor="@color/default_button"
+            />
 
         <TextView
             android:id="@+id/text_izberi_sliko_voda"

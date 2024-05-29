@@ -7,41 +7,42 @@
 
     <ImageView
         android:id="@+id/flag_red"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/flag_width"
+        android:layout_height="@dimen/flag_height"
         android:src="@drawable/ic_red_flag"
-        android:visibility="visible"
-        android:layout_marginEnd="2dp"/>
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/flag_margin"/>
 
     <ImageView
         android:id="@+id/flag_green"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/flag_width"
+        android:layout_height="@dimen/flag_height"
         android:src="@drawable/ic_green_flag"
-        android:visibility="visible"
-        android:layout_marginEnd="2dp"/>
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/flag_margin"/>
 
     <ImageView
         android:id="@+id/flag_blue"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/flag_width"
+        android:layout_height="@dimen/flag_height"
         android:src="@drawable/ic_blue_flag"
-        android:visibility="visible"
-        android:layout_marginEnd="2dp"/>
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/flag_margin"/>
 
     <ImageView
         android:id="@+id/flag_purple"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/flag_width"
+        android:layout_height="@dimen/flag_height"
         android:src="@drawable/ic_purple_flag"
-        android:visibility="visible"
-        android:layout_marginEnd="2dp"/>
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/flag_margin"/>
 
     <ImageView
         android:id="@+id/flag_yellow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/flag_width"
+        android:layout_height="@dimen/flag_height"
         android:src="@drawable/ic_orange_flag"
-        android:visibility="visible"
-        android:layout_marginEnd="2dp"/>
+        android:visibility="gone" />
+
+
 </LinearLayout>

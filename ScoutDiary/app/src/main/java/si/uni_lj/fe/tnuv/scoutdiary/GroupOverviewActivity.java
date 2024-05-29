@@ -4,11 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +39,9 @@ public class GroupOverviewActivity extends AppCompatActivity {
     private EditText etMeetingName, etMeetingDescription;
     private RatingBar ratingBar;
     private Calendar calendar;
+
+    private ImageView flagRed, flagGreen, flagBlue, flagPurple, flagYellow;
+    private Space flagsSpace;
 
 
     // Class
@@ -79,11 +86,19 @@ public class GroupOverviewActivity extends AppCompatActivity {
         etMeetingName = findViewById(R.id.et_meeting_name);
         etMeetingDescription = findViewById(R.id.et_meeting_description);
         ratingBar = findViewById(R.id.ocena_sestanka);
+
+        // Flags and space
+        flagRed = findViewById(R.id.flag_red);
+        flagGreen = findViewById(R.id.flag_green);
+        flagBlue = findViewById(R.id.flag_blue);
+        flagPurple = findViewById(R.id.flag_purple);
+        flagYellow = findViewById(R.id.flag_yellow);
     }
 
     private void setupListeners() {
         btn_meetingImg.setOnClickListener(v -> imageSelector.openGallery());
         findViewById(R.id.btn_evidenca).setOnClickListener(v -> showAttendanceDialog());
+        findViewById(R.id.btn_select_flags).setOnClickListener(v -> showFlagSelectionDialog());
 
         btnPreviousDay.setOnClickListener(v -> {
             saveDetailsForCurrentDate();
@@ -95,6 +110,39 @@ public class GroupOverviewActivity extends AppCompatActivity {
             changeDateBy(1);
         });
     }
+
+    private void showFlagSelectionDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_flags_selection);
+
+        CheckBox checkboxRed = dialog.findViewById(R.id.checkbox_red);
+        CheckBox checkboxGreen = dialog.findViewById(R.id.checkbox_green);
+        CheckBox checkboxBlue = dialog.findViewById(R.id.checkbox_blue);
+        CheckBox checkboxPurple = dialog.findViewById(R.id.checkbox_purple);
+        CheckBox checkboxYellow = dialog.findViewById(R.id.checkbox_yellow);
+        Button btnSaveFlags = dialog.findViewById(R.id.btn_save_flags);
+
+        // Load current flag selections
+        checkboxRed.setChecked(flagRed.getVisibility() == View.VISIBLE);
+        checkboxGreen.setChecked(flagGreen.getVisibility() == View.VISIBLE);
+        checkboxBlue.setChecked(flagBlue.getVisibility() == View.VISIBLE);
+        checkboxPurple.setChecked(flagPurple.getVisibility() == View.VISIBLE);
+        checkboxYellow.setChecked(flagYellow.getVisibility() == View.VISIBLE);
+
+        btnSaveFlags.setOnClickListener(v -> {
+            flagRed.setVisibility(checkboxRed.isChecked() ? View.VISIBLE : View.GONE);
+            flagGreen.setVisibility(checkboxGreen.isChecked() ? View.VISIBLE : View.GONE);
+            flagBlue.setVisibility(checkboxBlue.isChecked() ? View.VISIBLE : View.GONE);
+            flagPurple.setVisibility(checkboxPurple.isChecked() ? View.VISIBLE : View.GONE);
+            flagYellow.setVisibility(checkboxYellow.isChecked() ? View.VISIBLE : View.GONE);
+
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
+
 
     private void showAttendanceDialog() {
         Dialog dialog = new Dialog(this);
