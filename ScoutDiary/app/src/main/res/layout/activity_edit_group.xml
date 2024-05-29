@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditGroupActivity"
-    android:padding="16dp">
+    tools:context=".EditGroupActivity">
 
     <!-- App Name -->
     <ImageView
@@ -17,7 +16,8 @@
         android:src="@drawable/main_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -26,7 +26,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_screen">
+        app:layout_constraintTop_toBottomOf="@id/main_screen"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/btn_izberi_sliko_voda"
@@ -78,6 +79,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/vpisi_ime_voda"
             android:textColor="@color/default_text"
+            android:layout_marginEnd="16dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +105,9 @@
         app:layout_constraintBottom_toTopOf="@id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_clani_voda" />
+        app:layout_constraintTop_toBottomOf="@id/text_clani_voda"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
     <!-- Button to Add New Member -->
     <com.google.android.material.button.MaterialButton
