@@ -11,37 +11,119 @@
         android:text="@string/izberi_tematiko"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/default_text"/>
 
-    <CheckBox
-        android:id="@+id/checkbox_red"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/prva_pomoc"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/checkbox_green"
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_red_flag"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prva_pomoc"
+            android:textColor="@color/default_text"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bivanje_v_naravi"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/checkbox_blue"
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_green_flag"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bivanje_v_naravi"
+            android:textColor="@color/default_text"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/orientacija_in_signalizacija"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/checkbox_purple"
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_blue_flag"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orientacija_in_signalizacija"
+            android:textColor="@color/default_text"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tabornistvo"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/checkbox_yellow"
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_purple_flag"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_purple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabornistvo"
+            android:textColor="@color/default_text"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/drugo"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_orange_flag"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/izbire_in_interesne_dejavnosti"
+            android:textColor="@color/default_text"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_save_flags"
