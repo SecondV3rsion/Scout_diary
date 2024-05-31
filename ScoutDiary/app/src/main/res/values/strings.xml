@@ -94,5 +94,11 @@
     <string name="clani_voda">Člani voda:</string>
     <string name="dodaj_vod">Dodaj vod</string>
     <string name="izberi_sliko">Izberi sliko</string>
-    <string name="tematsko_n_podro_je">Tematsko\npodročje</string>
+    <string name="tematsko_podrocje">Tematsko\npodročje</string>
+    <string name="izberi_tematiko">Izberi tematiko</string>
+    <string name="prva_pomoc">Prva pomoč</string>
+    <string name="bivanje_v_naravi">Bivanje v naravi</string>
+    <string name="orientacija_in_signalizacija">Orientacija in signalizacija</string>
+    <string name="tabornistvo">Taborništvo</string>
+    <string name="drugo">Drugo</string>
 </resources>
