@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -125,7 +126,20 @@ public class EditGroupActivity extends AppCompatActivity {
             }
         });
         builder.setNegativeButton(R.string.cancel_text, (dialog, which) -> dialog.cancel());
-        builder.show();
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Change the button text colors
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        if (positiveButton != null) {
+            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.default_text));
+        }
+        if (negativeButton != null) {
+            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.default_text));
+        }
     }
 
     private void saveGroup() {
