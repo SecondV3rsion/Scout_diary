@@ -162,7 +162,7 @@
                         android:id="@+id/btn_select_flags"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tematsko_n_podro_je"
+                        android:text="@string/tematsko_podrocje"
                         android:backgroundTint="@color/default_text"
                         />
                 </LinearLayout>
