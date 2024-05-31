@@ -6,7 +6,7 @@
     <color name="background_gradient_end">#DDDDDD</color>
     <color name="fastlane_background">#0096a6</color>
     <color name="search_opaque">#ffaa3f</color>
-    <color name="selected_background">#ffaa3f</color>
+    <color name="selected_background">#FF0372</color>
     <color name="default_background">#E2DAD5</color>
     <color name="default_background2">#B5735A43</color>
     <color name="default_button">#AC8B6C</color>

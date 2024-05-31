@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,7 +31,7 @@ public class GroupOverviewActivity extends AppCompatActivity {
 
     private ImageView groupImg;
     private TextView groupName;
-    private ImageButton btnMeetingImg;
+    private ShapeableImageView btnMeetingImg;
     private TextView dateView;
     private ImageButton btnPreviousDay, btnNextDay;
     private EditText etMeetingName, etMeetingDescription;
@@ -178,8 +180,9 @@ public class GroupOverviewActivity extends AppCompatActivity {
         Uri groupImageUri = preferencesUtil.loadImageUri("group_img");
         if (groupImageUri != null) {
             groupImg.setImageURI(groupImageUri);
+            groupImg.setBackground(null);
         } else {
-            groupImg.setImageResource(R.drawable.ic_launcher_foreground);
+            groupImg.setImageResource(R.drawable.ic_photo);
         }
 
         loadDetailsForCurrentDate();
@@ -218,9 +221,10 @@ public class GroupOverviewActivity extends AppCompatActivity {
         if (meetingImageUri != null) {
             btnMeetingImg.setTag(meetingImageUri.toString());
             btnMeetingImg.setImageURI(meetingImageUri);
+            btnMeetingImg.setBackground(null);
         } else {
             btnMeetingImg.setTag(null);
-            btnMeetingImg.setImageResource(R.drawable.ic_launcher_foreground);
+            btnMeetingImg.setImageResource(R.drawable.ic_photo);
         }
         ratingBar.setRating(preferencesUtil.loadMeetingRating(dateKey));
         loadFlags(dateKey);

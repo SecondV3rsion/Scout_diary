@@ -149,15 +149,16 @@
                     android:layout_marginEnd="16dp">
 
                     <!-- Meeting Image -->
-                    <ImageButton
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/btn_izberi_sliko_sestanka"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:contentDescription="@string/slika_sestanka"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_photo"
-                        android:scaleType="centerCrop" />
+                        app:strokeWidth="10dp"
+                        app:strokeColor="@color/default_background"/>
 
-                    <!-- Button under the Image -->
                     <Button
                         android:id="@+id/btn_select_flags"
                         android:layout_width="wrap_content"
