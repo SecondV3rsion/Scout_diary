@@ -61,7 +61,7 @@ public class PreferencesUtil {
         return json != null ? gson.fromJson(json, type) : new ArrayList<>();
     }
 
-    public void saveMeetingDetails(String date, String name, String description, Uri imageUri, float rating) {
+    public void saveMeetingDetails(String date, String name, String description, Uri imageUri, float rating, List<Boolean> flags) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(date + "_name", name);
         editor.putString(date + "_description", description);
@@ -69,7 +69,15 @@ public class PreferencesUtil {
             editor.putString(date + "_imageUri", imageUri.toString());
         }
         editor.putFloat(date + "_rating", rating);
+        String flagsJson = gson.toJson(flags);
+        editor.putString(date + "_flags", flagsJson);
         editor.apply();
+    }
+
+    public List<Boolean> loadMeetingFlags(String date) {
+        String json = prefs.getString(date + "_flags", null);
+        Type type = new TypeToken<ArrayList<Boolean>>() {}.getType();
+        return json != null ? gson.fromJson(json, type) : new ArrayList<>();
     }
 
     public Uri loadMeetingImageUri(String date) {
