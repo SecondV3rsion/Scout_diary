@@ -47,5 +47,6 @@
         android:id="@+id/btn_save_flags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"/>
+        android:text="Save"
+        android:backgroundTint="@color/default_button"/>
 </LinearLayout>
