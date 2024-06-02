@@ -14,9 +14,13 @@ import android.widget.TextView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ArchiveActivity extends AppCompatActivity {
 
@@ -30,6 +34,14 @@ public class ArchiveActivity extends AppCompatActivity {
 
         // Load meeting dates
         List<Date> meetingDates = meetingView.loadMeetingDates();
+
+        // Sort meeting dates in ascending order
+        Collections.sort(meetingDates, new Comparator<Date>() {
+            @Override
+            public int compare(Date date1, Date date2) {
+                return date1.compareTo(date2);
+            }
+        });
 
         // Create meeting views for each saved date in the meetingDates list
         for (Date date : meetingDates) {
@@ -53,6 +65,12 @@ public class ArchiveActivity extends AppCompatActivity {
         ImageView flagBlue = meetingView.findViewById(R.id.flag_blue);
         ImageView flagPurple = meetingView.findViewById(R.id.flag_purple);
         ImageView flagYellow = meetingView.findViewById(R.id.flag_yellow);
+        TextView meetingDate = meetingView.findViewById(R.id.meeting_date);
+
+        // Set meeting date
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d. M. yy", Locale.getDefault());
+        String formattedDate = sdf.format(date);
+        meetingDate.setText(formattedDate);
 
         // Load meeting data for the specified date
         MeetingView meetingViewHelper = new MeetingView(new PreferencesUtil(this));
@@ -69,8 +87,9 @@ public class ArchiveActivity extends AppCompatActivity {
             meetingImage.setImageResource(R.drawable.ic_photo);
         }
 
-        // Set rating bar
+        // Set rating bar as view-only
         meetingRating.setRating(meetingData.getRating());
+        meetingRating.setIsIndicator(true);
 
         // Set flags
         List<Boolean> flags = meetingData.getFlags();
