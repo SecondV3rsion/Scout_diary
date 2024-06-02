@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,9 +39,10 @@ public class GroupOverviewActivity extends AppCompatActivity {
     private Calendar calendar;
 
     private ImageView flagRed, flagGreen, flagBlue, flagPurple, flagYellow;
-    private Space flagsSpace;
 
     private PreferencesUtil preferencesUtil;
+    private MeetingView meetingView;
+
     private ImageSelector imageSelector;
 
     @Override
@@ -51,13 +52,14 @@ public class GroupOverviewActivity extends AppCompatActivity {
         initViews();
         setupListeners();
         preferencesUtil = new PreferencesUtil(this);
+        meetingView = new MeetingView(preferencesUtil);
 
         imageSelector = new ImageSelector(this, new ImageSelector.ImageSelectedCallback() {
             @Override
             public void onImageSelected(Uri uri) {
                 btnMeetingImg.setTag(uri.toString());
                 btnMeetingImg.setImageURI(uri);
-                saveDetailsForCurrentDate();
+                saveMeetingForCurrentDate();
             }
 
             @Override
@@ -68,7 +70,7 @@ public class GroupOverviewActivity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
         setCurrentDate();
-        loadDetailsForCurrentDate();
+        loadMeetingForCurrentDate();
     }
 
     private void initViews() {
@@ -95,12 +97,12 @@ public class GroupOverviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_select_flags).setOnClickListener(v -> showFlagSelectionDialog());
 
         btnPreviousDay.setOnClickListener(v -> {
-            saveDetailsForCurrentDate();
+            saveMeetingForCurrentDate();
             changeDateBy(-1);
         });
 
         btnNextDay.setOnClickListener(v -> {
-            saveDetailsForCurrentDate();
+            saveMeetingForCurrentDate();
             changeDateBy(1);
         });
     }
@@ -185,7 +187,7 @@ public class GroupOverviewActivity extends AppCompatActivity {
             groupImg.setImageResource(R.drawable.ic_photo);
         }
 
-        loadDetailsForCurrentDate();
+        loadMeetingForCurrentDate();
     }
 
     private void setCurrentDate() {
@@ -195,43 +197,47 @@ public class GroupOverviewActivity extends AppCompatActivity {
     }
 
     private void changeDateBy(int days) {
-        saveDetailsForCurrentDate();
+        saveMeetingForCurrentDate();
         calendar.add(Calendar.DAY_OF_MONTH, days);
         setCurrentDate();
-        loadDetailsForCurrentDate();
+        loadMeetingForCurrentDate();
     }
 
-    private void saveDetailsForCurrentDate() {
-        String dateKey = getDateKey();
+    private void saveMeetingForCurrentDate() {
+        Date currentDate = calendar.getTime();
         String meetingName = etMeetingName.getText().toString();
         String meetingDescription = etMeetingDescription.getText().toString();
         Uri meetingImageUri = btnMeetingImg.getTag() != null ? Uri.parse(btnMeetingImg.getTag().toString()) : null;
         float rating = ratingBar.getRating();
-
         List<Boolean> flags = getFlags();
-        preferencesUtil.saveMeetingDetails(dateKey, meetingName, meetingDescription, meetingImageUri, rating, flags);
+        List<Boolean> attendance = preferencesUtil.loadAttendance(getDateKey());
+
+        meetingView.saveMeeting(currentDate, meetingName, meetingDescription, meetingImageUri, rating, flags, attendance);
     }
 
-    private void loadDetailsForCurrentDate() {
-        String dateKey = getDateKey();
-        etMeetingName.setText(preferencesUtil.loadMeetingName(dateKey));
-        etMeetingDescription.setText(preferencesUtil.loadMeetingDescription(dateKey));
+    private void loadMeetingForCurrentDate() {
+        Date currentDate = calendar.getTime();
+        MeetingView.MeetingData meetingData = meetingView.loadMeeting(currentDate);
 
-        Uri meetingImageUri = preferencesUtil.loadMeetingImageUri(dateKey);
-        if (meetingImageUri != null) {
-            btnMeetingImg.setTag(meetingImageUri.toString());
-            btnMeetingImg.setImageURI(meetingImageUri);
+        // Set meeting name and description
+        etMeetingName.setText(meetingData.getMeetingName());
+        etMeetingDescription.setText(meetingData.getMeetingDescription());
+
+        // Set meeting image
+        if (meetingData.getMeetingImageUri() != null) {
+            btnMeetingImg.setTag(meetingData.getMeetingImageUri().toString());
+            btnMeetingImg.setImageURI(meetingData.getMeetingImageUri());
             btnMeetingImg.setBackground(null);
         } else {
             btnMeetingImg.setTag(null);
             btnMeetingImg.setImageResource(R.drawable.ic_photo);
         }
-        ratingBar.setRating(preferencesUtil.loadMeetingRating(dateKey));
-        loadFlags(dateKey);
-    }
 
-    private void loadFlags(String dateKey) {
-        List<Boolean> flags = preferencesUtil.loadMeetingFlags(dateKey);
+        // Set rating bar
+        ratingBar.setRating(meetingData.getRating());
+
+        // Set flags
+        List<Boolean> flags = meetingData.getFlags();
         flagRed.setVisibility(flags.size() > 0 && flags.get(0) ? View.VISIBLE : View.GONE);
         flagGreen.setVisibility(flags.size() > 1 && flags.get(1) ? View.VISIBLE : View.GONE);
         flagBlue.setVisibility(flags.size() > 2 && flags.get(2) ? View.VISIBLE : View.GONE);
@@ -239,12 +245,21 @@ public class GroupOverviewActivity extends AppCompatActivity {
         flagYellow.setVisibility(flags.size() > 4 && flags.get(4) ? View.VISIBLE : View.GONE);
     }
 
+    private String getDateKey() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return sdf.format(calendar.getTime());
+    }
+
     private void saveFlagsForCurrentDate() {
         List<Boolean> flags = getFlags();
-        preferencesUtil.saveMeetingDetails(getDateKey(), etMeetingName.getText().toString(),
-                etMeetingDescription.getText().toString(),
-                btnMeetingImg.getTag() != null ? Uri.parse(btnMeetingImg.getTag().toString()) : null,
-                ratingBar.getRating(), flags);
+        String dateKey = getDateKey();
+        String meetingName = etMeetingName.getText().toString();
+        String meetingDescription = etMeetingDescription.getText().toString();
+        Uri meetingImageUri = btnMeetingImg.getTag() != null ? Uri.parse(btnMeetingImg.getTag().toString()) : null;
+        float rating = ratingBar.getRating();
+        List<Boolean> attendance = preferencesUtil.loadAttendance(dateKey);
+
+        meetingView.saveMeeting(calendar.getTime(), meetingName, meetingDescription, meetingImageUri, rating, flags, attendance);
     }
 
     private List<Boolean> getFlags() {
@@ -256,9 +271,5 @@ public class GroupOverviewActivity extends AppCompatActivity {
         flags.add(flagYellow.getVisibility() == View.VISIBLE);
         return flags;
     }
-
-    private String getDateKey() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return sdf.format(calendar.getTime());
-    }
 }
+
