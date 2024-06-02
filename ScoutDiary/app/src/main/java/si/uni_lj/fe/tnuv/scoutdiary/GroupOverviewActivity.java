@@ -98,7 +98,17 @@ public class GroupOverviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_select_flags).setOnClickListener(v -> showFlagSelectionDialog());
 
 
+        findViewById(R.id.btn_zbrisi).setOnClickListener(v -> {
+            deleteDataForCurrentDate();
+            Toast.makeText(GroupOverviewActivity.this, R.string.meeting_deleted, Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.btn_shrani).setOnClickListener(v -> {
+            saveMeetingForCurrentDate();
+            Toast.makeText(GroupOverviewActivity.this, R.string.meeting_saved, Toast.LENGTH_SHORT).show();
+        });
         findViewById(R.id.btn_arhiv).setOnClickListener(v -> {
+            saveMeetingForCurrentDate();
             Intent intent = new Intent(GroupOverviewActivity.this, ArchiveActivity.class);
             startActivity(intent);
         });
@@ -211,6 +221,22 @@ public class GroupOverviewActivity extends AppCompatActivity {
         loadMeetingForCurrentDate();
     }
 
+    private void deleteDataForCurrentDate() {
+        Date currentDate = calendar.getTime();
+        meetingView.deleteMeeting(currentDate);
+
+        etMeetingName.setText("");
+        etMeetingDescription.setText("");
+        btnMeetingImg.setTag(null);
+        btnMeetingImg.setImageResource(R.drawable.ic_photo);
+        ratingBar.setRating(0);
+        flagRed.setVisibility(View.GONE);
+        flagGreen.setVisibility(View.GONE);
+        flagBlue.setVisibility(View.GONE);
+        flagPurple.setVisibility(View.GONE);
+        flagYellow.setVisibility(View.GONE);
+    }
+
     private void saveMeetingForCurrentDate() {
         Date currentDate = calendar.getTime();
         String meetingName = etMeetingName.getText().toString();
@@ -221,7 +247,7 @@ public class GroupOverviewActivity extends AppCompatActivity {
         List<Boolean> attendance = preferencesUtil.loadAttendance(getDateKey());
 
         // Check if meeting name, description, and image are not empty
-        if (!meetingName.isEmpty() && !meetingDescription.isEmpty() && meetingImageUri != null) {
+        if (!meetingName.isEmpty() || !meetingDescription.isEmpty() || meetingImageUri != null) {
             // Save the meeting
             meetingView.saveMeeting(currentDate, meetingName, meetingDescription, meetingImageUri, rating, flags, attendance);
         }

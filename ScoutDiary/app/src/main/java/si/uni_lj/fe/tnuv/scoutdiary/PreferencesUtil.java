@@ -116,4 +116,18 @@ public class PreferencesUtil {
         return meetingDateKeys;
     }
 
+    public void deleteMeetingDetails(String dateKey) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove(dateKey + "_name");
+        editor.remove(dateKey + "_description");
+        editor.remove(dateKey + "_imageUri");
+        editor.remove(dateKey + "_rating");
+        editor.remove(dateKey + "_flags");
+        editor.apply();
+    }
+
+    public void deleteAttendance(String dateKey) {
+        prefs.edit().remove(dateKey + "_attendance").apply();
+    }
+
 }

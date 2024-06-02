@@ -1,213 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".GroupOverviewActivity"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Group name -->
-    <TextView
-        android:id="@+id/ime_voda"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ime_voda"
-        android:fontFamily="cursive"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp" />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".GroupOverviewActivity"
+        android:padding="16dp">
 
-    <!-- Group image -->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/slika_voda"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/ime_voda"
-        app:layout_constraintTop_toBottomOf="@+id/ime_voda"
-        app:layout_constraintEnd_toEndOf="@+id/ime_voda"
-        tools:srcCompat="@tools:sample/avatars"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/slika_voda"
-        app:strokeWidth="10dp"
-        app:strokeColor="@color/default_button"/>
-
-    <!-- Button evidenca -->
-    <Button
-        android:id="@+id/btn_evidenca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="@string/gumb_evidenca"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/slika_voda"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/slika_voda"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/default_button"
-        android:textColor="@android:color/white"
-        android:padding="10dp" />
-
-    <!-- Arhiv Button -->
-    <Button
-        android:id="@+id/btn_arhiv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="@string/btn_arhiv"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/slika_voda"
-        app:layout_constraintStart_toStartOf="@+id/btn_evidenca"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/default_button"
-        android:textColor="@android:color/white"
-        android:padding="10dp" />
-
-    <!-- CardView for meeting details -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_meeting_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_arhiv"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Group name -->
+        <TextView
+            android:id="@+id/ime_voda"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/default_background">
+            android:text="@string/ime_voda"
+            android:fontFamily="cursive"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp" />
 
-            <!-- Date Navigation -->
+        <!-- Group image -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/slika_voda"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/ime_voda"
+            app:layout_constraintTop_toBottomOf="@+id/ime_voda"
+            app:layout_constraintEnd_toEndOf="@+id/ime_voda"
+            tools:srcCompat="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/slika_voda"
+            app:strokeWidth="10dp"
+            app:strokeColor="@color/default_button"/>
+
+        <!-- Button evidenca -->
+        <Button
+            android:id="@+id/btn_evidenca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/gumb_evidenca"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/slika_voda"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/slika_voda"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/default_button"
+            android:textColor="@android:color/white"
+            android:padding="10dp" />
+
+        <!-- Arhiv Button -->
+        <Button
+            android:id="@+id/btn_arhiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/btn_arhiv"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/slika_voda"
+            app:layout_constraintStart_toStartOf="@+id/btn_evidenca"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/default_button"
+            android:textColor="@android:color/white"
+            android:padding="10dp" />
+
+        <!-- CardView for meeting details -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_meeting_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_arhiv"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="8dp"
-                android:background="@color/white">
-
-                <ImageButton
-                    android:id="@+id/btn_previous_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_media_previous"
-                    android:background="?attr/selectableItemBackgroundBorderless" />
-
-                <TextView
-                    android:id="@+id/current_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/example_date"
-                    android:textSize="18sp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="center" />
-
-                <ImageButton
-                    android:id="@+id/btn_next_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_media_next"
-                    android:background="?attr/selectableItemBackgroundBorderless" />
-            </LinearLayout>
-
-            <!-- Meeting name EditText -->
-            <EditText
-                android:id="@+id/et_meeting_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/ime_sestanka"
-                android:layout_marginTop="8dp" />
-
-            <!-- Meeting Image and Description -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="16dp"
-                android:background="@color/default_background2">
+                android:background="@color/default_background">
 
-                <!-- LinearLayout for Image and Button -->
+                <!-- Date Navigation -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="16dp">
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/white">
 
-                    <!-- Meeting Image -->
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/btn_izberi_sliko_sestanka"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:contentDescription="@string/slika_sestanka"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_photo"
-                        app:strokeWidth="10dp"
-                        app:strokeColor="@color/default_background"/>
-
-                    <Button
-                        android:id="@+id/btn_select_flags"
+                    <ImageButton
+                        android:id="@+id/btn_previous_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tematsko_podrocje"
-                        android:backgroundTint="@color/default_text"
-                        />
+                        android:src="@android:drawable/ic_media_previous"
+                        android:background="?attr/selectableItemBackgroundBorderless" />
+
+                    <TextView
+                        android:id="@+id/current_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/example_date"
+                        android:textSize="18sp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center" />
+
+                    <ImageButton
+                        android:id="@+id/btn_next_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_media_next"
+                        android:background="?attr/selectableItemBackgroundBorderless" />
                 </LinearLayout>
 
-                <!-- Meeting description EditText -->
+                <!-- Meeting name EditText -->
                 <EditText
-                    android:id="@+id/et_meeting_description"
-                    android:layout_width="0dp"
+                    android:id="@+id/et_meeting_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/opis_sestanka"
-                    android:layout_marginStart="16dp" />
+                    android:hint="@string/ime_sestanka"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Meeting Image and Description -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@color/default_background2">
+
+                    <!-- LinearLayout for Image and Button -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="16dp">
+
+                        <!-- Meeting Image -->
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/btn_izberi_sliko_sestanka"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:contentDescription="@string/slika_sestanka"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_photo"
+                            app:strokeWidth="10dp"
+                            app:strokeColor="@color/default_background"/>
+
+                        <Button
+                            android:id="@+id/btn_select_flags"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tematsko_podrocje"
+                            android:backgroundTint="@color/default_text"
+                            />
+                    </LinearLayout>
+
+                    <!-- Meeting description EditText -->
+                    <EditText
+                        android:id="@+id/et_meeting_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/opis_sestanka"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Flags and Rating Bar -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Flags view -->
+                    <include
+                        layout="@layout/flags_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <!-- Meeting rating bar -->
+                    <RatingBar
+                        android:id="@+id/ocena_sestanka"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_zbrisi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/zbrisi"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="20sp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/default_button"
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btn_shrani"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="@string/shrani"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="20sp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/default_button"
+                        android:textColor="@android:color/white"
+                        android:layout_marginStart="8dp"/>
+                </LinearLayout>
+
             </LinearLayout>
-
-
-            <!-- Flags and Rating Bar -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <!-- Flags view -->
-                <include
-                    layout="@layout/flags_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <!-- Meeting rating bar -->
-                <RatingBar
-                    android:id="@+id/ocena_sestanka"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

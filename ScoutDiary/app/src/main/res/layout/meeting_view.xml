@@ -118,7 +118,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:scaleX="0.9"
-                    android:scaleY="0.9" />
+                    android:scaleY="0.9"
+                    android:paddingHorizontal="10dp"/>
             </LinearLayout>
 
         </LinearLayout>

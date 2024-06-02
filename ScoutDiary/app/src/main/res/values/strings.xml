@@ -102,4 +102,7 @@
     <string name="tabornistvo">Taborništvo</string>
     <string name="izbire_in_interesne_dejavnosti">Izbirne in interesne dejavnosti</string>
     <string name="slika_ni_bila_izbrana">Slika ni bila izbrana</string>
+    <string name="zbrisi">Zbriši</string>
+    <string name="meeting_deleted">Sestanek je bil odstranjen</string>
+    <string name="meeting_saved">Sestanek je shranjen</string>
 </resources>

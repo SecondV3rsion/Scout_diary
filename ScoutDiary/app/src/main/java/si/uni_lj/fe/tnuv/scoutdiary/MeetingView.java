@@ -36,6 +36,12 @@ public class MeetingView {
         preferencesUtil.saveAttendance(dateKey, attendance);
     }
 
+    public void deleteMeeting(Date date) {
+        String dateKey = getDateKey(date);
+        preferencesUtil.deleteMeetingDetails(dateKey);
+        preferencesUtil.deleteAttendance(dateKey);
+    }
+
     /**
      * Loads the meeting details and attendance from preferences.
      *
