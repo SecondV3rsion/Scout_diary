@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- CardView for meeting details -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_meeting_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/default_background">
+
+            <!-- Date Navigation -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"
+                android:background="@color/default_background">
+
+
+                <TextView
+                    android:id="@+id/current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/example_date"
+                    android:textSize="18sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- Meeting name -->
+            <TextView
+                android:id="@+id/meeting_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ime_sestanka"
+                android:layout_marginTop="8dp"
+                style="@style/MaterialAlertDialog.Material3.Body.Text.CenterStacked"/>
+
+            <!-- Meeting Image and Description -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:background="@color/default_background2">
+
+                <!-- LinearLayout for Image and Button -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp">
+
+                    <!-- Meeting Image -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/slika_sestanka"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="@string/slika_sestanka"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_photo"
+                        app:strokeWidth="10dp"
+                        app:strokeColor="@color/default_background"/>
+
+
+                </LinearLayout>
+
+                <!-- Meeting description -->
+                <TextView
+                    android:id="@+id/meeting_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/opis_sestanka"
+                    android:layout_marginStart="16dp" />
+            </LinearLayout>
+
+
+            <!-- Flags and Rating Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Flags view -->
+                <include
+                    layout="@layout/flags_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <!-- Meeting rating bar -->
+                <RatingBar
+                    android:id="@+id/ocena_sestanka"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
