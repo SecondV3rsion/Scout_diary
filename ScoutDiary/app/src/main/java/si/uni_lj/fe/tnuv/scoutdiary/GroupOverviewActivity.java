@@ -1,6 +1,7 @@
 package si.uni_lj.fe.tnuv.scoutdiary;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -96,6 +97,12 @@ public class GroupOverviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_evidenca).setOnClickListener(v -> showAttendanceDialog());
         findViewById(R.id.btn_select_flags).setOnClickListener(v -> showFlagSelectionDialog());
 
+
+        findViewById(R.id.btn_arhiv).setOnClickListener(v -> {
+            Intent intent = new Intent(GroupOverviewActivity.this, ArchiveActivity.class);
+            startActivity(intent);
+        });
+
         btnPreviousDay.setOnClickListener(v -> {
             saveMeetingForCurrentDate();
             changeDateBy(-1);
@@ -106,6 +113,7 @@ public class GroupOverviewActivity extends AppCompatActivity {
             changeDateBy(1);
         });
     }
+
 
     private void showFlagSelectionDialog() {
         Dialog dialog = new Dialog(this);
