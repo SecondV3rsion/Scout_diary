@@ -19,6 +19,10 @@ public class PreferencesUtil {
     private SharedPreferences prefs;
     private Gson gson;
 
+    public void clearPreferences() {
+        prefs.edit().clear().apply();
+    }
+
     public PreferencesUtil(Context context) {
         prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         gson = new Gson();

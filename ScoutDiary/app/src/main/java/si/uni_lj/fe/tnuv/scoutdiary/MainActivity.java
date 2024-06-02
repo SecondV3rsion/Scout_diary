@@ -2,7 +2,9 @@ package si.uni_lj.fe.tnuv.scoutdiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -21,12 +23,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+
         preferencesUtil = new PreferencesUtil(this);
+
+        // Check if it's the first run and clear preferences
+        clearPreferencesOnFirstRun();
     }
 
     private void initViews() {
         btn_slika_voda = findViewById(R.id.btn_slika_voda);
         groupName = findViewById(R.id.ime_voda);
+    }
+
+    private void clearPreferencesOnFirstRun() {
+        SharedPreferences prefs = getSharedPreferences("scout_diary_prefs", Context.MODE_PRIVATE);
+        boolean isFirstRun = prefs.getBoolean("isFirstRun", true);
+
+        if (isFirstRun) {
+            preferencesUtil.clearPreferences();
+
+            // Set isFirstRun to false to indicate that the app has been initialized
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isFirstRun", false);
+            editor.apply();
+        }
     }
 
     @Override
