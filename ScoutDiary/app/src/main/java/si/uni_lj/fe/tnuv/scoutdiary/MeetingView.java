@@ -2,12 +2,14 @@ package si.uni_lj.fe.tnuv.scoutdiary;
 
 import android.net.Uri;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class MeetingView {
 
@@ -61,6 +63,27 @@ public class MeetingView {
     private String getDateKey(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return sdf.format(date);
+    }
+
+    public List<Date> loadMeetingDates() {
+        List<Date> meetingDates = new ArrayList<>();
+
+        // Load meeting dates from preferences
+        Set<String> dateKeys = preferencesUtil.getAllMeetingDateKeys();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        for (String dateKey : dateKeys) {
+            try {
+                Date date = sdf.parse(dateKey);
+                if (date != null) {
+                    meetingDates.add(date);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        // Sort meeting dates if needed
+        Collections.sort(meetingDates);
+        return meetingDates;
     }
 
     public static class MeetingData {
