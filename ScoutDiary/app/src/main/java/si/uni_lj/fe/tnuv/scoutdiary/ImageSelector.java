@@ -35,7 +35,7 @@ public class ImageSelector {
                             grantPersistableUriPermission(uri);
                         }
                     } else {
-                        this.callback.onSelectionError("No image selected");
+                        this.callback.onSelectionError(activity.getString(R.string.slika_ni_bila_izbrana));
                     }
                 });
     }
