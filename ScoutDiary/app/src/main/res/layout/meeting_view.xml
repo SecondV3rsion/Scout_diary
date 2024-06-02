@@ -34,7 +34,7 @@
 
 
                 <TextView
-                    android:id="@+id/current_date"
+                    android:id="@+id/meeting_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/example_date"
@@ -71,7 +71,7 @@
 
                     <!-- Meeting Image -->
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/slika_sestanka"
+                        android:id="@+id/meeting_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:contentDescription="@string/slika_sestanka"
@@ -110,7 +110,7 @@
 
                 <!-- Meeting rating bar -->
                 <RatingBar
-                    android:id="@+id/ocena_sestanka"
+                    android:id="@+id/meeting_rating"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
