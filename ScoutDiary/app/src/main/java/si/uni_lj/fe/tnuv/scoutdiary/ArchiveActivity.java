@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class ArchiveActivity extends AppCompatActivity {
         Collections.sort(meetingDates, new Comparator<Date>() {
             @Override
             public int compare(Date date1, Date date2) {
-                return date1.compareTo(date2);
+                return date2.compareTo(date1);
             }
         });
 
