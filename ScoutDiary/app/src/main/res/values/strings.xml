@@ -101,4 +101,5 @@
     <string name="orientacija_in_signalizacija">Orientacija in signalizacija</string>
     <string name="tabornistvo">Taborništvo</string>
     <string name="izbire_in_interesne_dejavnosti">Izbirne in interesne dejavnosti</string>
+    <string name="slika_ni_bila_izbrana">Slika ni bila izbrana</string>
 </resources>
