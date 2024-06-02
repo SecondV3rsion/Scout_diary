@@ -220,7 +220,11 @@ public class GroupOverviewActivity extends AppCompatActivity {
         List<Boolean> flags = getFlags();
         List<Boolean> attendance = preferencesUtil.loadAttendance(getDateKey());
 
-        meetingView.saveMeeting(currentDate, meetingName, meetingDescription, meetingImageUri, rating, flags, attendance);
+        // Check if meeting name, description, and image are not empty
+        if (!meetingName.isEmpty() && !meetingDescription.isEmpty() && meetingImageUri != null) {
+            // Save the meeting
+            meetingView.saveMeeting(currentDate, meetingName, meetingDescription, meetingImageUri, rating, flags, attendance);
+        }
     }
 
     private void loadMeetingForCurrentDate() {
