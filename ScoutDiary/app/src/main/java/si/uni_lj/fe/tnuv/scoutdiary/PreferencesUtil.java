@@ -10,6 +10,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PreferencesUtil {
 
@@ -96,4 +98,18 @@ public class PreferencesUtil {
     public float loadMeetingRating(String date) {
         return prefs.getFloat(date + "_rating", 0f);
     }
+
+    public Set<String> getAllMeetingDateKeys() {
+        Set<String> allKeys = prefs.getAll().keySet();
+        Set<String> meetingDateKeys = new HashSet<>();
+        for (String key : allKeys) {
+            if (key.endsWith("_name")) {
+                // Extract date part from the key
+                String dateKey = key.replace("_name", "");
+                meetingDateKeys.add(dateKey);
+            }
+        }
+        return meetingDateKeys;
+    }
+
 }
